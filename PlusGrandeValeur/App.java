@@ -1,67 +1,57 @@
+
+/**
+ * Titre      : plus ghrande valeur 
+ *@auteur     : Pidjieu dibril
+  @since       : 13/10/2023
+  Description: utilisation des tableau et des liste chainee
+  @Version    : 0.0.1
+ */
+
 package PlusGrandeValeur;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-
+import java.util.Scanner;
+/**
+ * la classe App contient la methode principale main()
+ */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Menu :");
-        System.out.println("1. Utiliser ArrayList");
-        System.out.println("2. Utiliser LinkedList");
-        System.out.print("Choix : ");
+        // Creation  d'un objet Scanner pour lire l'entrée de l'utilisateur.
+        Scanner scannerObj = new Scanner(System.in);
+        //declaration de la variable continuer en boolean
+        boolean continuer = true;
+        
+        // Exécute la boucle du menu tant que continuer est vrai.
+        while (continuer) {
+            // Affiche le menu principal.
+            Menu.AffichargeMenu();
+            // Lit le choix de l'utilisateur.
+            int choix = scannerObj.nextInt();
 
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
-        int choix = scanner.nextInt();
-
-        switch (choix) {
-            case 1:
-                utiliserArrayList();
-                break;
-            case 2:
-                utiliserLinkedList();
-                break;
-            default:
-                System.out.println("Choix invalide.");
-        }
-
-        scanner.close();
-    }
-
-    // Méthode pour utiliser ArrayList
-    public static void utiliserArrayList() {
-        ArrayList<Integer> tableau = new ArrayList<>();
-        ArrayListTableau.remplirTableau(tableau);
-        ArrayListTableau.afficherTableau(tableau);
-        trouverPlusGrandeValeur(tableau);
-    }
-
-    // Méthode pour utiliser LinkedList
-    public static void utiliserLinkedList() {
-        LinkedList<Integer> liste = new LinkedList<>();
-        LinkedListListechainee.remplirListe(liste);
-        LinkedListListechainee.afficherListe(liste);
-        trouverPlusGrandeValeur(liste);
-    }
-
-    // Trouve la plus grande valeur dans le tableau ou la liste et affiche son index.
-    public static void trouverPlusGrandeValeur(Iterable<Integer> iterable) {
-        int plusGrandeValeur = Integer.MIN_VALUE;
-        int index = -1;
-        int i = 0;
-
-        for (int valeur : iterable) {
-            if (valeur > plusGrandeValeur) {
-                plusGrandeValeur = valeur;
-                index = i;
+            // Utilise une structure switch pour exécuter différentes actions en fonction du choix.
+            switch (choix) {
+                case 1:
+                    // Appelle la méthode UseArrayList de la classe Traitement.
+                    Traitement.UseArrayList();
+                    break;
+                case 2:
+                    // Appelle la méthode UseLinkedList de la classe Traitement.
+                    Traitement.UseLinkedList();
+                    break;
+                case 3:
+                    // Sort de la boucle et termine le programme.
+                    continuer = false;
+                    break;
+                default:
+                    // Affiche un message d'erreur si le choix est invalide 
+                    System.out.println("Choix invalide. Veuillez entrer un numéro valide.");
             }
-            i++;
         }
 
-        if (index != -1) {
-            System.out.println("La plus grande valeur est " + plusGrandeValeur + " à l'index " + index);
-        } else {
-            System.out.println("Le tableau (ou la liste) est vide.");
-        }
+        // Ferme l'objet Scanner.
+        scannerObj.close();
     }
 }
+
+ 
+
+ 
 
